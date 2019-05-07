@@ -1,0 +1,407 @@
+{
+    "title": "Service Management",
+    "description": "Google Service Management allows service producers to publish their services on Google Cloud Platform so that they can be discovered and used by service consumers.",
+    "docsUrl": "https://cloud.google.com/service-management/",
+    "url": "https://api.apis.guru/v2/specs/googleapis.com/servicemanagement/v1/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://servicemanagement.googleapis.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "Oauth2": {
+                "label": "Oauth 2.0 authentication",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "servicemanagement_operations_list": {
+            "main": "./lib/actions/servicemanagement_operations_list.js",
+            "title": "Lists service operations that match the specified filter in the request.",
+            "description": "Lists service operations that match the specified filter in the request.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/servicemanagement_operations_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "servicemanagement_services_list": {
+            "main": "./lib/actions/servicemanagement_services_list.js",
+            "title": "Lists managed services.\n\nReturns all public services. For authenticated users, also returns all\nservices the calling user has \"servicemanagement.services.get\" permission\nfor.\n\n**BETA:** If the caller specifies the `consumer_id`, it returns only the\nservices enabled on the consumer. The `consumer_id` must have the format\nof \"project:{PROJECT-ID}\".",
+            "description": "Lists managed services.\n\nReturns all public services. For authenticated users, also returns all\nservices the calling user has \"servicemanagement.services.get\" permission\nfor.\n\n**BETA:** If the caller specifies the `consumer_id`, it returns only the\nservices enabled on the consumer. The `consumer_id` must have the format\nof \"project:{PROJECT-ID}\".",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/servicemanagement_services_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "servicemanagement_services_create": {
+            "main": "./lib/actions/servicemanagement_services_create.js",
+            "title": "Creates a new managed service.\nPlease note one producer project can own no more than 20 services.\n\nOperation<response: ManagedService>",
+            "description": "Creates a new managed service.\nPlease note one producer project can own no more than 20 services.\n\nOperation<response: ManagedService>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/servicemanagement_services_create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "servicemanagement_services_delete": {
+            "main": "./lib/actions/servicemanagement_services_delete.js",
+            "title": "Deletes a managed service. This method will change the service to the\n`Soft-Delete` state for 30 days. Within this period, service producers may\ncall UndeleteService to restore the service.\nAfter 30 days, the service will be permanently deleted.\n\nOperation<response: google.protobuf.Empty>",
+            "description": "Deletes a managed service. This method will change the service to the\n`Soft-Delete` state for 30 days. Within this period, service producers may\ncall UndeleteService to restore the service.\nAfter 30 days, the service will be permanently deleted.\n\nOperation<response: google.protobuf.Empty>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/servicemanagement_services_delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "servicemanagement_services_get": {
+            "main": "./lib/actions/servicemanagement_services_get.js",
+            "title": "Gets a managed service. Authentication is required unless the service is\npublic.",
+            "description": "Gets a managed service. Authentication is required unless the service is\npublic.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/servicemanagement_services_get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "servicemanagement_services_getConfig": {
+            "main": "./lib/actions/servicemanagement_services_getConfig.js",
+            "title": "Gets a service configuration (version) for a managed service.",
+            "description": "Gets a service configuration (version) for a managed service.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/servicemanagement_services_getConfig.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "servicemanagement_services_configs_list": {
+            "main": "./lib/actions/servicemanagement_services_configs_list.js",
+            "title": "Lists the history of the service configuration for a managed service,\nfrom the newest to the oldest.",
+            "description": "Lists the history of the service configuration for a managed service,\nfrom the newest to the oldest.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/servicemanagement_services_configs_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "servicemanagement_services_configs_create": {
+            "main": "./lib/actions/servicemanagement_services_configs_create.js",
+            "title": "Creates a new service configuration (version) for a managed service.\nThis method only stores the service configuration. To roll out the service\nconfiguration to backend systems please call\nCreateServiceRollout.\n\nOnly the 100 most recent service configurations and ones referenced by\nexisting rollouts are kept for each service. The rest will be deleted\neventually.",
+            "description": "Creates a new service configuration (version) for a managed service.\nThis method only stores the service configuration. To roll out the service\nconfiguration to backend systems please call\nCreateServiceRollout.\n\nOnly the 100 most recent service configurations and ones referenced by\nexisting rollouts are kept for each service. The rest will be deleted\neventually.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/servicemanagement_services_configs_create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "servicemanagement_services_configs_get": {
+            "main": "./lib/actions/servicemanagement_services_configs_get.js",
+            "title": "Gets a service configuration (version) for a managed service.",
+            "description": "Gets a service configuration (version) for a managed service.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/servicemanagement_services_configs_get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "servicemanagement_services_configs_submit": {
+            "main": "./lib/actions/servicemanagement_services_configs_submit.js",
+            "title": "Creates a new service configuration (version) for a managed service based\non\nuser-supplied configuration source files (for example: OpenAPI\nSpecification). This method stores the source configurations as well as the\ngenerated service configuration. To rollout the service configuration to\nother services,\nplease call CreateServiceRollout.\n\nOnly the 100 most recent configuration sources and ones referenced by\nexisting service configurtions are kept for each service. The rest will be\ndeleted eventually.\n\nOperation<response: SubmitConfigSourceResponse>",
+            "description": "Creates a new service configuration (version) for a managed service based\non\nuser-supplied configuration source files (for example: OpenAPI\nSpecification). This method stores the source configurations as well as the\ngenerated service configuration. To rollout the service configuration to\nother services,\nplease call CreateServiceRollout.\n\nOnly the 100 most recent configuration sources and ones referenced by\nexisting service configurtions are kept for each service. The rest will be\ndeleted eventually.\n\nOperation<response: SubmitConfigSourceResponse>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/servicemanagement_services_configs_submit.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "servicemanagement_services_rollouts_list": {
+            "main": "./lib/actions/servicemanagement_services_rollouts_list.js",
+            "title": "Lists the history of the service configuration rollouts for a managed\nservice, from the newest to the oldest.",
+            "description": "Lists the history of the service configuration rollouts for a managed\nservice, from the newest to the oldest.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/servicemanagement_services_rollouts_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "servicemanagement_services_rollouts_create": {
+            "main": "./lib/actions/servicemanagement_services_rollouts_create.js",
+            "title": "Creates a new service configuration rollout. Based on rollout, the\nGoogle Service Management will roll out the service configurations to\ndifferent backend services. For example, the logging configuration will be\npushed to Google Cloud Logging.\n\nPlease note that any previous pending and running Rollouts and associated\nOperations will be automatically cancelled so that the latest Rollout will\nnot be blocked by previous Rollouts.\n\nOnly the 100 most recent (in any state) and the last 10 successful (if not\nalready part of the set of 100 most recent) rollouts are kept for each\nservice. The rest will be deleted eventually.\n\nOperation<response: Rollout>",
+            "description": "Creates a new service configuration rollout. Based on rollout, the\nGoogle Service Management will roll out the service configurations to\ndifferent backend services. For example, the logging configuration will be\npushed to Google Cloud Logging.\n\nPlease note that any previous pending and running Rollouts and associated\nOperations will be automatically cancelled so that the latest Rollout will\nnot be blocked by previous Rollouts.\n\nOnly the 100 most recent (in any state) and the last 10 successful (if not\nalready part of the set of 100 most recent) rollouts are kept for each\nservice. The rest will be deleted eventually.\n\nOperation<response: Rollout>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/servicemanagement_services_rollouts_create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "servicemanagement_services_rollouts_get": {
+            "main": "./lib/actions/servicemanagement_services_rollouts_get.js",
+            "title": "Gets a service configuration rollout.",
+            "description": "Gets a service configuration rollout.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/servicemanagement_services_rollouts_get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "servicemanagement_services_disable": {
+            "main": "./lib/actions/servicemanagement_services_disable.js",
+            "title": "Disables a service for a project, so it can no longer be\nbe used for the project. It prevents accidental usage that may cause\nunexpected billing charges or security leaks.\n\nOperation<response: DisableServiceResponse>",
+            "description": "Disables a service for a project, so it can no longer be\nbe used for the project. It prevents accidental usage that may cause\nunexpected billing charges or security leaks.\n\nOperation<response: DisableServiceResponse>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/servicemanagement_services_disable.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "servicemanagement_services_enable": {
+            "main": "./lib/actions/servicemanagement_services_enable.js",
+            "title": "Enables a service for a project, so it can be used\nfor the project. See\n[Cloud Auth Guide](https://cloud.google.com/docs/authentication) for\nmore information.\n\nOperation<response: EnableServiceResponse>",
+            "description": "Enables a service for a project, so it can be used\nfor the project. See\n[Cloud Auth Guide](https://cloud.google.com/docs/authentication) for\nmore information.\n\nOperation<response: EnableServiceResponse>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/servicemanagement_services_enable.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "servicemanagement_services_undelete": {
+            "main": "./lib/actions/servicemanagement_services_undelete.js",
+            "title": "Revives a previously deleted managed service. The method restores the\nservice using the configuration at the time the service was deleted.\nThe target service must exist and must have been deleted within the\nlast 30 days.\n\nOperation<response: UndeleteServiceResponse>",
+            "description": "Revives a previously deleted managed service. The method restores the\nservice using the configuration at the time the service was deleted.\nThe target service must exist and must have been deleted within the\nlast 30 days.\n\nOperation<response: UndeleteServiceResponse>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/servicemanagement_services_undelete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "servicemanagement_services_generateConfigReport": {
+            "main": "./lib/actions/servicemanagement_services_generateConfigReport.js",
+            "title": "Generates and returns a report (errors, warnings and changes from\nexisting configurations) associated with\nGenerateConfigReportRequest.new_value\n\nIf GenerateConfigReportRequest.old_value is specified,\nGenerateConfigReportRequest will contain a single ChangeReport based on the\ncomparison between GenerateConfigReportRequest.new_value and\nGenerateConfigReportRequest.old_value.\nIf GenerateConfigReportRequest.old_value is not specified, this method\nwill compare GenerateConfigReportRequest.new_value with the last pushed\nservice configuration.",
+            "description": "Generates and returns a report (errors, warnings and changes from\nexisting configurations) associated with\nGenerateConfigReportRequest.new_value\n\nIf GenerateConfigReportRequest.old_value is specified,\nGenerateConfigReportRequest will contain a single ChangeReport based on the\ncomparison between GenerateConfigReportRequest.new_value and\nGenerateConfigReportRequest.old_value.\nIf GenerateConfigReportRequest.old_value is not specified, this method\nwill compare GenerateConfigReportRequest.new_value with the last pushed\nservice configuration.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/servicemanagement_services_generateConfigReport.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "servicemanagement_operations_get": {
+            "main": "./lib/actions/servicemanagement_operations_get.js",
+            "title": "Gets the latest state of a long-running operation.  Clients can use this\nmethod to poll the operation result at intervals as recommended by the API\nservice.",
+            "description": "Gets the latest state of a long-running operation.  Clients can use this\nmethod to poll the operation result at intervals as recommended by the API\nservice.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/servicemanagement_operations_get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "servicemanagement_services_consumers_getIamPolicy": {
+            "main": "./lib/actions/servicemanagement_services_consumers_getIamPolicy.js",
+            "title": "Gets the access control policy for a resource.\nReturns an empty policy if the resource exists and does not have a policy\nset.",
+            "description": "Gets the access control policy for a resource.\nReturns an empty policy if the resource exists and does not have a policy\nset.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/servicemanagement_services_consumers_getIamPolicy.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "servicemanagement_services_consumers_setIamPolicy": {
+            "main": "./lib/actions/servicemanagement_services_consumers_setIamPolicy.js",
+            "title": "Sets the access control policy on the specified resource. Replaces any\nexisting policy.",
+            "description": "Sets the access control policy on the specified resource. Replaces any\nexisting policy.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/servicemanagement_services_consumers_setIamPolicy.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "servicemanagement_services_consumers_testIamPermissions": {
+            "main": "./lib/actions/servicemanagement_services_consumers_testIamPermissions.js",
+            "title": "Returns permissions that a caller has on the specified resource.\nIf the resource does not exist, this will return an empty set of\npermissions, not a NOT_FOUND error.\n\nNote: This operation is designed to be used for building permission-aware\nUIs and command-line tools, not for authorization checking. This operation\nmay \"fail open\" without warning.",
+            "description": "Returns permissions that a caller has on the specified resource.\nIf the resource does not exist, this will return an empty set of\npermissions, not a NOT_FOUND error.\n\nNote: This operation is designed to be used for building permission-aware\nUIs and command-line tools, not for authorization checking. This operation\nmay \"fail open\" without warning.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/servicemanagement_services_consumers_testIamPermissions.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

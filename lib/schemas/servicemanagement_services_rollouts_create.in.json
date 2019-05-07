@@ -1,0 +1,101 @@
+{
+    "type": "object",
+    "properties": {
+        "serviceName": {
+            "required": true,
+            "type": "string"
+        },
+        "access_token": {
+            "type": "string"
+        },
+        "alt": {
+            "type": "string",
+            "enum": [
+                "json",
+                "media",
+                "proto"
+            ],
+            "default": "json"
+        },
+        "callback": {
+            "type": "string"
+        },
+        "fields": {
+            "type": "string"
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "uploadType": {
+            "type": "string"
+        },
+        "upload_protocol": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "A rollout resource that defines how service configuration versions are pushed\nto control plane systems. Typically, you create a new version of the\nservice config, and then create a Rollout to push the service config.",
+            "properties": {
+                "createTime": {
+                    "description": "Creation time of the rollout. Readonly.",
+                    "format": "google-datetime",
+                    "type": "string"
+                },
+                "createdBy": {
+                    "description": "The user who created the Rollout. Readonly.",
+                    "type": "string"
+                },
+                "deleteServiceStrategy": {
+                    "description": "The strategy associated with a rollout to delete a `ManagedService`.\nReadonly.",
+                    "properties": {},
+                    "type": "object"
+                },
+                "rolloutId": {
+                    "description": "Optional unique identifier of this Rollout. Only lower case letters, digits\n and '-' are allowed.\n\nIf not specified by client, the server will generate one. The generated id\nwill have the form of <date><revision number>, where \"date\" is the create\ndate in ISO 8601 format.  \"revision number\" is a monotonically increasing\npositive number that is reset every day for each service.\nAn example of the generated rollout_id is '2016-02-16r1'",
+                    "type": "string"
+                },
+                "serviceName": {
+                    "description": "The name of the service associated with this Rollout.",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "The status of this rollout. Readonly. In case of a failed rollout,\nthe system will automatically rollback to the current Rollout\nversion. Readonly.",
+                    "enum": [
+                        "ROLLOUT_STATUS_UNSPECIFIED",
+                        "IN_PROGRESS",
+                        "SUCCESS",
+                        "CANCELLED",
+                        "FAILED",
+                        "PENDING",
+                        "FAILED_ROLLED_BACK"
+                    ],
+                    "type": "string"
+                },
+                "trafficPercentStrategy": {
+                    "description": "Google Service Control selects service configurations based on\ntraffic percentage.",
+                    "properties": {
+                        "percentages": {
+                            "additionalProperties": {
+                                "format": "double",
+                                "type": "number"
+                            },
+                            "description": "Maps service configuration IDs to their corresponding traffic percentage.\nKey is the service configuration ID, Value is the traffic percentage\nwhich must be greater than 0.0 and the sum must equal to 100.0.",
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

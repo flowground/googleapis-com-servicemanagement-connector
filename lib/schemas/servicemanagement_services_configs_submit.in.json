@@ -1,0 +1,97 @@
+{
+    "type": "object",
+    "properties": {
+        "serviceName": {
+            "required": true,
+            "type": "string"
+        },
+        "access_token": {
+            "type": "string"
+        },
+        "alt": {
+            "type": "string",
+            "enum": [
+                "json",
+                "media",
+                "proto"
+            ],
+            "default": "json"
+        },
+        "callback": {
+            "type": "string"
+        },
+        "fields": {
+            "type": "string"
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "uploadType": {
+            "type": "string"
+        },
+        "upload_protocol": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Request message for SubmitConfigSource method.",
+            "properties": {
+                "configSource": {
+                    "description": "The source configuration for the service.",
+                    "properties": {
+                        "files": {
+                            "description": "Set of source configuration files that are used to generate a service\nconfiguration (`google.api.Service`).",
+                            "items": {
+                                "description": "Generic specification of a source configuration file",
+                                "properties": {
+                                    "fileContents": {
+                                        "description": "The bytes that constitute the file.",
+                                        "format": "byte",
+                                        "type": "string"
+                                    },
+                                    "filePath": {
+                                        "description": "The file name of the configuration file (full or relative path).",
+                                        "type": "string"
+                                    },
+                                    "fileType": {
+                                        "description": "The type of configuration file this represents.",
+                                        "enum": [
+                                            "FILE_TYPE_UNSPECIFIED",
+                                            "SERVICE_CONFIG_YAML",
+                                            "OPEN_API_JSON",
+                                            "OPEN_API_YAML",
+                                            "FILE_DESCRIPTOR_SET_PROTO",
+                                            "PROTO_FILE"
+                                        ],
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "id": {
+                            "description": "A unique ID for a specific instance of this message, typically assigned\nby the client for tracking purpose. If empty, the server may choose to\ngenerate one instead.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "validateOnly": {
+                    "description": "Optional. If set, this will result in the generation of a\n`google.api.Service` configuration based on the `ConfigSource` provided,\nbut the generated config and the sources will NOT be persisted.",
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        }
+    }
+}
